@@ -1,0 +1,53 @@
+services:
+
+  # ---------------------------------------------------------------------------
+  # Embedding Service — CLIP inference (GPU-enabled)
+  # ---------------------------------------------------------------------------
+  embedding-svc:
+    build:
+      context: ./backend/embedding-svc
+      dockerfile: Dockerfile
+    container_name: capflex_embedding
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./shared_data:/shared_data
+    environment:
+      - SHARED_DIR=/shared_data
+      - CLIP_MODEL=openai/clip-vit-base-patch32
+      - CLIP_BATCH_SIZE=64
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Clustering Service — CapFlex algorithm (CPU-intensive)
+  # ---------------------------------------------------------------------------
+  clustering-svc:
+    build:
+      context: ./backend/clustering-svc
+      dockerfile: Dockerfile
+    container_name: capflex_clustering
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./shared_data:/shared_data
+    environment:
+      - SHARED_DIR=/shared_data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: capflex_frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - embedding-svc
+      - clustering-svc
+    restart: unless-stopped
+
+volumes:
+  shared_data:

@@ -1,0 +1,27 @@
+server {
+    listen 80;
+    client_max_body_size 500M;
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api/clustering/ {
+        proxy_pass http://clustering-svc:8002/;
+        proxy_set_header Host $host;
+        proxy_connect_timeout 300s;
+        proxy_read_timeout 300s;
+        proxy_send_timeout 300s;
+    }
+
+    location /api/embedding/ {
+        proxy_pass http://embedding-svc:8001/;
+        proxy_set_header Host $host;
+        proxy_connect_timeout 300s;
+        proxy_read_timeout 300s;
+        proxy_send_timeout 300s;
+        client_max_body_size 500M;
+    }
+}

@@ -1,0 +1,9 @@
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+python-multipart==0.0.9
+pulp==2.8.0
+joblib==1.4.2
+scikit-learn>=1.4.0
+numpy>=1.26.0
+pandas>=2.2.0
+aiofiles==23.2.1
