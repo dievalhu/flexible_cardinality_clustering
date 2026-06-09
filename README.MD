@@ -4,8 +4,6 @@
 
 [![Live Demo](https://img.shields.io/badge/demo-capflex.online-blue)](https://capflex.online/)
 [![Video](https://img.shields.io/badge/video-demonstration-red)](https://bit.ly/4uI2jdR)
-[![Algorithm](https://img.shields.io/badge/algorithm-source-green)](https://anonymous.4open.science/r/flexible_cardinality_clustering-5EB5/)
-
 ---
 
 ## Overview
@@ -60,8 +58,8 @@ Inter-service communication uses a **shared volume** (`shared_data`) for CSV exc
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/matt087/Web-CapFlex.git
-cd Web-CapFlex
+git clone https://github.com/dievalhu/flexible_cardinality_clustering.git
+cd flexible_cardinality_clustering
 ```
 
 ### 2. Build and start all services
