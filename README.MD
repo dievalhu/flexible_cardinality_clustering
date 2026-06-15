@@ -252,12 +252,4 @@ CapFlex implements a constrained clustering pipeline with the following componen
 
 ---
 
-## Reference
 
-If you use this software, please cite:
-
-```
-Vallejo-Huanga, D., Montenegro, M., Simbaña, B., Ferri, C., & Martínez-Plumed, F.
-CapFlex: Multimodal Soft Clustering with Flexible Size Constraints.
-ECML PKDD 2026 Demo Track.
-```
